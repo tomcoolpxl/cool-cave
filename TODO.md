@@ -46,18 +46,18 @@
 - [x] Verify all slices in a sample chunk satisfy MIN_GAP and MAX_STEP bounds
 
 ## Phase 5 — Cave feasibility validator (reachability simulation)
-- [ ] Create systems/cave_validator.lua with validator.check(slices, params) function
-- [ ] Implement discrete reachability simulation with (y, vy) state set per slice
-- [ ] Apply VALIDATION_MARGIN by shrinking usable gap during simulation
-- [ ] Update cave_generator.lua to call validator per chunk with retry loop
-- [ ] Implement fallback straight-corridor chunk in cave_generator.lua
-- [ ] Add VALIDATION_MARGIN, MAX_GEN_RETRIES, FALLBACK_GAP to constants.lua
-- [ ] Write test harness: trivially feasible chunk → must return true
-- [ ] Write test harness: trivially infeasible chunk → must return false
-- [ ] Write test harness: 1000 chunk generation loop → no infinite loop, no errors
-- [ ] Check rejection rate over 1000 chunks — tune constants if > 50%
-- [ ] Grep validator.lua for math.random (must return 0 matches)
-- [ ] Confirm validator runs < 2s for 1000 chunks
+- [x] Create systems/cave_validator.lua with validator.check(slices, params) function
+- [x] Implement discrete reachability simulation with (y, vy) state set per slice
+- [x] Apply VALIDATION_MARGIN by shrinking usable gap during simulation
+- [x] Update cave_generator.lua to call validator per chunk with retry loop
+- [x] Implement fallback straight-corridor chunk in cave_generator.lua
+- [x] Add VALIDATION_MARGIN, MAX_GEN_RETRIES, FALLBACK_GAP to constants.lua
+- [x] Write test harness: trivially feasible chunk → must return true
+- [x] Write test harness: trivially infeasible chunk → must return false
+- [x] Write test harness: 1000 chunk generation loop → no infinite loop, no errors
+- [x] Check rejection rate over 1000 chunks — tune constants if > 50%
+- [x] Grep validator.lua for math.random (must return 0 matches)
+- [x] Confirm validator runs < 2s for 1000 chunks
 
 ## Phase 6 — Cave rendering, scrolling, and collision detection
 - [ ] Create systems/collision.lua with AABB check against current cave slice

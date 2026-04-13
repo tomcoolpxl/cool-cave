@@ -40,6 +40,15 @@
 - [x] Verify generator can be reset with the same seed to produce identical output
 - [x] Enforce `MIN_GAP` and `MAX_STEP` constraints on every slice
 
+## Phase 5 — Cave feasibility validator (reachability simulation)
+- [x] Create `systems/cave_validator.lua` with reachability simulation
+- [x] Implement discrete state set tracking for (y, vy)
+- [x] Apply `VALIDATION_MARGIN` for safety during simulation
+- [x] Integrate validator into `systems/cave_generator.lua` with retry/fallback logic
+- [x] Implement known-safe straight fallback chunk for generator
+- [x] Verify validator correctly rejects impossible chunks and accepts safe ones
+- [x] Verify no `math.random` usage in validator
+
 Verified on: Monday, April 13, 2026
 OS: win32
-Result: Success. Cave generation is deterministic and obeys all geometric constraints.
+Result: Success. Generator now only produces traversable cave segments, with a reliable fallback mechanism.
