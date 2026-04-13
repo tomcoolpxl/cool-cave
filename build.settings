@@ -1,0 +1,20 @@
+-- build.settings
+-- Build-time configuration only. Not loaded at runtime.
+-- Changes here require a rebuild to take effect.
+
+settings = {
+    orientation = {
+        default   = "landscape",
+        supported = { "landscape" },
+    },
+
+    android = {
+        -- Package name is set in the Solar2D Build dialog, not here.
+        -- Target: com.coolcave.game
+        -- minSdkVersion is set in the Build dialog (target API 21+).
+    },
+
+    plugins = {
+        -- No third-party plugins in Phase 1.
+    },
+}
