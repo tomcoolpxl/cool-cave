@@ -32,6 +32,14 @@
 - [x] Verify velocity clamping works as intended
 - [x] Verify fixed timestep is used in player update
 
+## Phase 4 — Seeded cave generator producing slice data
+- [x] Create `util/random.lua` with Xorshift32 algorithm for cross-platform determinism
+- [x] Create `systems/cave_generator.lua` using the deterministic RNG
+- [x] Implement drifting centerline and bounded step changes for cave generation
+- [x] Verify `math.random` is NOT used in any generation logic
+- [x] Verify generator can be reset with the same seed to produce identical output
+- [x] Enforce `MIN_GAP` and `MAX_STEP` constraints on every slice
+
 Verified on: Monday, April 13, 2026
 OS: win32
-Result: Success. Player movement is floaty and responds correctly to touch events.
+Result: Success. Cave generation is deterministic and obeys all geometric constraints.

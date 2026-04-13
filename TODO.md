@@ -34,16 +34,16 @@
 - [x] Confirm fixed timestep is used (document in player.lua comment)
 
 ## Phase 4 — Seeded cave generator producing slice data
-- [ ] Create util/random.lua with Xorshift32 RNG (new, nextInt methods)
-- [ ] Verify Xorshift32 produces known deterministic output for seed 12345
-- [ ] Create systems/cave_generator.lua with generateChunk(count) returning slice array
-- [ ] Implement drifting centerline generation with bounded step changes
-- [ ] Enforce MIN_GAP on every slice in generator
-- [ ] Add CHUNK_SIZE, MIN_GAP, MAX_STEP, CENTER_DRIFT_MAX to constants.lua
-- [ ] Write debug harness: run generator twice with same seed, compare output (must match)
-- [ ] Run debug harness with two different seeds, confirm outputs differ
-- [ ] Grep cave_generator.lua and random.lua for math.random (must return 0 matches)
-- [ ] Verify all slices in a sample chunk satisfy MIN_GAP and MAX_STEP bounds
+- [x] Create util/random.lua with Xorshift32 RNG (new, nextInt methods)
+- [x] Verify Xorshift32 produces known deterministic output for seed 12345
+- [x] Create systems/cave_generator.lua with generateChunk(count) returning slice array
+- [x] Implement drifting centerline generation with bounded step changes
+- [x] Enforce MIN_GAP on every slice in generator
+- [x] Add CHUNK_SIZE, MIN_GAP, MAX_STEP, CENTER_DRIFT_MAX to constants.lua
+- [x] Write debug harness: run generator twice with same seed, compare output (must match)
+- [x] Run debug harness with two different seeds, confirm outputs differ
+- [x] Grep cave_generator.lua and random.lua for math.random (must return 0 matches)
+- [x] Verify all slices in a sample chunk satisfy MIN_GAP and MAX_STEP bounds
 
 ## Phase 5 — Cave feasibility validator (reachability simulation)
 - [ ] Create systems/cave_validator.lua with validator.check(slices, params) function
