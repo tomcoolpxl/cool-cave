@@ -16,8 +16,8 @@ This plan covers the full MVP as defined in `REQUIREMENTS.md`, from project scaf
 |---|---|---|
 | A1 | Development machine has Solar2D simulator installed (2025.3722 or later) | All phases blocked until resolved |
 | A2 | HTML5 builds are produced via Solar2D's built-in HTML5 build target (no separate tool) | Phase 1 build step changes |
-| A3 | A local HTTP server (e.g. `python3 -m http.server`) is available for HTML5 testing | Phase 1 and Phase 10 test method changes |
-| A4 | Android SDK and a debug keystore are available for Android builds | Phase 11 blocked without them |
+| A3 | A local HTTP server is available for HTML5 testing. **Windows note:** use `python -m http.server 8000` (not `python3`) if Python was installed via the standard Windows installer. Alternatively `npx serve` or `npx http-server` work without Python. Document the working command in `DEV_NOTES.md` during Phase 1. | Phase 1 and Phase 10 test method changes |
+| A4 | Android SDK is installed (confirmed). Debug keystore must be generated before Phase 12 (`keytool -genkey ...`). A physical Android device or AVD emulator must be available and reachable via `adb devices`. | Phase 12 blocked if device/emulator not available |
 | A5 | Manual vertical kinematics (position + velocity + acceleration) are used — Box2D physics engine is **not** used | Phase 2 fundamentally changes if wrong |
 | A6 | The seeded RNG is a **pure Lua Xorshift32 implementation** in `util/random.lua`, NOT `math.randomseed` + `math.random`, to guarantee identical output across platforms and Solar2D versions | Determinism guarantee breaks if wrong |
 | A7 | Persistence uses a `loadsave.lua` helper that reads/writes JSON to `system.DocumentsDirectory` | Phase 7 implementation changes |
@@ -1285,21 +1285,23 @@ The project is complete when all of the following are true:
 
 ## Open questions
 
-### Blocking before Phase 1
+All blocking questions are resolved. Non-blocking questions have concrete answers recorded below.
 
-| # | Question | Blocks |
+### Blocking before Phase 1 — RESOLVED
+
+| # | Question | Resolution |
 |---|---|---|
-| OQ1 | Is Solar2D 2025.3722 (or later) installed on the development machine? | Phase 1 |
-| OQ2 | Is the Android SDK configured and is a device or emulator available? | Phase 12 |
+| OQ1 | Is Solar2D installed on the development machine? | **Yes.** Solar2D is installed on Windows. Phase 1 unblocked. |
+| OQ2 | Is the Android SDK configured and is a device or emulator available? | **SDK: yes, installed on Windows.** Confirm a device or AVD emulator is reachable via `adb devices` before Phase 12. |
 
-### Non-blocking (resolve before the relevant phase)
+### Non-blocking — RESOLVED
 
-| # | Question | Affects |
-|---|---|---|
-| OQ3 | What are the final target screen dimensions / base resolution for `config.lua`? 960×540 assumed; confirm or adjust. | Phase 1 |
-| OQ4 | Are the audio files already available, or do they need to be sourced/created? | Phase 10 |
-| OQ5 | Should the sound toggle appear on the title screen in MVP, or is it deferred post-MVP? REQUIREMENTS.md marks it optional. | Phase 9 / 10 |
-| OQ6 | What is the intended fixed seed value? A concrete integer (e.g. `42` or `20250101`) should be chosen and recorded in `constants.lua`. | Phase 4 |
-| OQ7 | What is the target `SCROLL_SPEED` in pixels per second? This drives all generation and validation tuning. | Phase 3 / 4 |
-| OQ8 | Is a launcher icon required for the Android APK in MVP, or is a placeholder acceptable? | Phase 12 |
-| OQ9 | Will the project be hosted anywhere publicly (static host, itch.io) after HTML5 verification? If yes, a deployment phase should be added. | Phase 11 |
+| # | Question | Resolution | Affects |
+|---|---|---|---|
+| OQ3 | Base resolution for `config.lua`? | **960×540, landscape.** Standard Solar2D landscape target. Letterbox scale mode. | Phase 1 |
+| OQ4 | Are audio files available? | **No.** Must be sourced before Phase 10. Use free CC0 SFX (e.g. freesound.org). Short OGG files preferred for HTML5 compatibility. Placeholder silence is acceptable to unblock earlier phases. | Phase 10 |
+| OQ5 | Sound toggle on title screen in MVP? | **Deferred post-MVP.** Title screen stays minimal. Sound toggle is an REQUIREMENTS.md optional item. | Phase 9 / 10 |
+| OQ6 | Fixed seed value? | **`20250101`** — memorable, year-based. Record as `FIXED_SEED = 20250101` in `constants.lua`. | Phase 4 |
+| OQ7 | Target `SCROLL_SPEED`? | **200 pixels/second** at 960px wide base (≈ 4.8 s to cross screen). Tune after Phase 3 feel test if needed. Record as `SCROLL_SPEED = 200` in `constants.lua`. | Phase 3 / 4 |
+| OQ8 | Launcher icon required for Android APK in MVP? | **Placeholder acceptable.** Use a simple solid-color PNG at required sizes. Real icon is post-MVP. | Phase 12 |
+| OQ9 | Public hosting after HTML5 verification? | **Not required for MVP.** itch.io is the natural fit if hosting is wanted later. Add a deployment phase post-MVP if desired. | Phase 11 |
