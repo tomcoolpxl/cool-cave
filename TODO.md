@@ -11,4 +11,4 @@
 - [ ] Serve HTML5 output via local HTTP server and verify in Chrome (no JS console errors)
 - [ ] Verify HTML5 output in Firefox (no JS console errors)
 - [x] Write DEV_NOTES.md documenting Solar2D version, build steps, and local server command
-- [x] Scope creep check: grep new files for player/cave/score/trail (matches in comments only — PASS)
+- [x] Scope creep check: grep new files for player/cave/score/trail (comments only — PASS)
