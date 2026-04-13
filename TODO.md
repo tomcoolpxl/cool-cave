@@ -1,14 +1,9 @@
-## Phase 1
+## Phase 2
 
-- [x] Create main.lua with minimal Composer entry point
-- [x] Create config.lua with landscape orientation and letterBox scale
-- [x] Create build.settings with Android package name and landscape lock
-- [x] Create scenes/menu.lua stub (placeholder label only)
-- [x] Create empty scenes/, systems/, util/, assets/, test/ directories with .gitkeep
-- [ ] Verify project opens and runs in Solar2D simulator (no Lua errors)
-- [ ] Print display.contentWidth/Height in simulator to confirm 960x540
-- [ ] Produce HTML5 build via Solar2D HTML5 build target
-- [ ] Serve HTML5 output via local HTTP server and verify in Chrome (no JS console errors)
-- [ ] Verify HTML5 output in Firefox (no JS console errors)
-- [x] Write DEV_NOTES.md documenting Solar2D version, build steps, and local server command
-- [x] Scope creep check: grep new files for player/cave/score/trail (comments only — PASS)
+- [ ] Create scenes/menu.lua stub with tap-to-start navigation
+- [ ] Create scenes/game.lua stub with enterFrame heartbeat and transition to gameover
+- [ ] Create scenes/gameover.lua stub with tap-to-restart navigation
+- [ ] Verify transition cycle (Menu -> Game -> Gameover -> Menu) in simulator
+- [ ] Verify enterFrame cleanup via console logging (no zombie loops)
+- [ ] Verify full navigation cycle in HTML5 build
+- [ ] Scope check: no movement logic or physics bodies added

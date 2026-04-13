@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(where Solar2D)",
+      "Bash(where Corona)",
+      "Read(//c/Program Files/**)",
+      "Read(//c/Program Files \\(x86\\)/**)",
+      "Bash(reg query:*)",
+      "Bash(cmd.exe:*)"
+    ]
+  }
+}

@@ -23,6 +23,24 @@ Project rules:
 - Ask before making a large refactor, changing the directory structure, or removing tests.
 - Before moving work to `DONE.md`, review the diff, run the required checks, and update docs if the change affected scope or structure.
 
+# Testing & Launching
+
+## Solar2D Simulator (Local Desktop)
+To run the game in the simulator for rapid development:
+- **Command:** `& "C:\Program Files (x86)\Corona Labs\Corona\Corona Simulator.exe" -project "C:\Users\thraa\github\cool-cave\main.lua"`
+- **Verification:** Check the simulator console for Lua errors. Ensure the window shows the expected UI.
+
+## HTML5 Build & Test
+To verify the game in a browser (essential for cross-platform parity):
+1. **Build:** `& "C:\Program Files (x86)\Corona Labs\Corona\Corona Simulator.exe" -build "C:\Users\thraa\github\cool-cave\main.lua" -platform html5 -output "C:\Users\thraa\github\cool-cave\dist"`
+2. **Serve:** Run `python -m http.server 8000` from the `dist` directory.
+3. **Test:** Open `http://localhost:8000` in Chrome and Firefox.
+4. **Verification:** Check DevTools Console (F12) for JS errors.
+
+## Code Quality
+- **Grep Check:** Always grep for "TODO", "FIXME", or specific logic keywords (e.g., "player", "cave") to ensure no unfinished work is committed.
+- **Cleanup:** Ensure `enterFrame` listeners are removed on scene exit to prevent memory leaks.
+
 # Coding
 
 ## 1. Think Before Coding
