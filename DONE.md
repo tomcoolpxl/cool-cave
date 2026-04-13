@@ -49,6 +49,15 @@
 - [x] Verify validator correctly rejects impossible chunks and accepts safe ones
 - [x] Verify no `math.random` usage in validator
 
+## Phase 6 — Cave rendering, scrolling, and collision detection
+- [x] Create `systems/collision.lua` for AABB collision detection
+- [x] Implement slice display object pool in `scenes/game.lua` for performance
+- [x] Implement horizontal scrolling of cave slices
+- [x] Implement slice recycling (off-screen slices returned to pool)
+- [x] Integrate collision detection in `onFrame` loop
+- [x] Verify game transitions to `gameover` on collision with top or bottom walls
+- [x] Verify smooth scrolling and chunk generation without visual gaps
+
 Verified on: Monday, April 13, 2026
 OS: win32
-Result: Success. Generator now only produces traversable cave segments, with a reliable fallback mechanism.
+Result: Success. Cave scrolls smoothly, and collision detection is accurate.
