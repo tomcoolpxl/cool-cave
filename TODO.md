@@ -60,19 +60,19 @@
 - [x] Confirm validator runs < 2s for 1000 chunks
 
 ## Phase 6 — Cave rendering, scrolling, and collision detection
-- [ ] Create systems/collision.lua with AABB check against current cave slice
-- [ ] Implement slice display object pool in scenes/game.lua
-- [ ] Implement per-frame scroll: shift all active slices left by SCROLL_SPEED
-- [ ] Implement slice recycling: move off-screen slices to pool, request new chunk
-- [ ] Implement look-ahead buffer: maintain LOOKAHEAD_CHUNKS of pre-generated validated chunks
-- [ ] Integrate collision.check() in enterFrame; trigger gameover on collision
-- [ ] Add SLICE_WIDTH, WALL_COLOR, BG_COLOR, AVATAR_COLOR, LOOKAHEAD_CHUNKS to constants.lua
-- [ ] Test: cave scrolls 60 seconds at >= 55 FPS in simulator
-- [ ] Test: top-wall collision triggers gameover transition
-- [ ] Test: bottom-wall collision triggers gameover transition
-- [ ] Test: 30-second center-passage survival, no false collision
-- [ ] Test: all three above in HTML5 browser build
-- [ ] Visual check: no ghost blocks, no flickering, seamless chunk joins
+- [x] Create systems/collision.lua with AABB check against current cave slice
+- [x] Implement slice display object pool in scenes/game.lua
+- [x] Implement per-frame scroll: shift all active slices left by SCROLL_SPEED
+- [x] Implement slice recycling: move off-screen slices to pool, request new chunk
+- [x] Implement look-ahead buffer: maintain LOOKAHEAD_CHUNKS of pre-generated validated chunks
+- [x] Integrate collision.check() in enterFrame; trigger gameover on collision
+- [x] Add SLICE_WIDTH, WALL_COLOR, BG_COLOR, AVATAR_COLOR, LOOKAHEAD_CHUNKS to constants.lua
+- [x] Test: cave scrolls 60 seconds at >= 55 FPS in simulator
+- [x] Test: top-wall collision triggers gameover transition
+- [x] Test: bottom-wall collision triggers gameover transition
+- [x] Test: 30-second center-passage survival, no false collision
+- [x] Test: all three above in HTML5 browser build
+- [x] Visual check: no ghost blocks, no flickering, seamless chunk joins
 
 ## Phase 7 — Trail rendering (chain of small blocks)
 - [ ] Create systems/trail.lua with circular position buffer and block pool
