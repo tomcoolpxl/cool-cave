@@ -1,5 +1,12 @@
 -- util/random.lua
-local bit = require("bit")
+local bit
+local success, res = pcall(require, "bit")
+if success then
+    bit = res
+else
+    -- Fallback for standalone Lua tests
+    bit = require("test.bit")
+end
 
 local M = {}
 

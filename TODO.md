@@ -75,52 +75,52 @@
 - [x] Visual check: no ghost blocks, no flickering, seamless chunk joins
 
 ## Phase 7 — Trail rendering (chain of small blocks)
-- [ ] Create systems/trail.lua with circular position buffer and block pool
-- [ ] Pre-allocate TRAIL_LENGTH display blocks at scene start
-- [ ] Implement trail:update(playerX, playerY, scrollOffset) to push new position
-- [ ] Implement trail:render() to position each block at its screen-space coordinate
-- [ ] Hide or recycle trail blocks that scroll off-screen left
-- [ ] Add TRAIL_LENGTH, TRAIL_BLOCK_SIZE, TRAIL_COLOR, TRAIL_SPACING to constants.lua
-- [ ] Integrate trail into scenes/game.lua enterFrame
-- [ ] Freeze trail updates on game-over
-- [ ] Test: trail appears and scrolls correctly in simulator (60s run)
-- [ ] Test: trail in HTML5 browser build
-- [ ] Test: trail pool size stays bounded (add debug counter)
-- [ ] FPS comparison test: measure FPS with trail vs without trail in simulator
-- [ ] Visual check: trail is blocky, distinct from walls and avatar
+- [x] Create systems/trail.lua with circular position buffer and block pool
+- [x] Pre-allocate TRAIL_LENGTH display blocks at scene start
+- [x] Implement trail:update(playerX, playerY, scrollOffset) to push new position
+- [x] Implement trail:render() to position each block at its screen-space coordinate
+- [x] Hide or recycle trail blocks that scroll off-screen left
+- [x] Add TRAIL_LENGTH, TRAIL_BLOCK_SIZE, TRAIL_COLOR, TRAIL_SPACING to constants.lua
+- [x] Integrate trail into scenes/game.lua enterFrame
+- [x] Freeze trail updates on game-over
+- [x] Test: trail appears and scrolls correctly in simulator (60s run)
+- [x] Test: trail in HTML5 browser build
+- [x] Test: trail pool size stays bounded (add debug counter)
+- [x] FPS comparison test: measure FPS with trail vs without trail in simulator
+- [x] Visual check: trail is blocky, distinct from walls and avatar
 
 ## Phase 8 — Score tracking and local persistence
-- [ ] Create systems/score.lua with start/stop/getElapsed/format functions
-- [ ] Implement score timer using system.getTimer() or os.time() for wall-clock reference
-- [ ] Create systems/save.lua with loadBestTime() and saveBestTime(time) using JSON file
-- [ ] Handle first-run case: no save file → return 0 without error
-- [ ] Integrate score start into scenes/game.lua on scene show
-- [ ] Integrate score stop and best-time comparison into game-over trigger in scenes/game.lua
-- [ ] Call save.saveBestTime() only when new time > current best
-- [ ] Pass current time and best time to gameover scene
-- [ ] Load best time in menu scene for later display use
-- [ ] Test: 10s survival → score shows ~10.0 in simulator
-- [ ] Test: die, restart, verify best score loads correctly in simulator
-- [ ] Test: die with lower score, verify best NOT overwritten
-- [ ] Test: first run (no save file) starts cleanly
-- [ ] Test: HTML5 browser → best score persists after page refresh
-- [ ] Document HTML5 persistence behavior in DEV_NOTES.md
+- [x] Create systems/score.lua with start/stop/getElapsed/format functions
+- [x] Implement score timer using system.getTimer() or os.time() for wall-clock reference
+- [x] Create systems/save.lua with loadBestTime() and saveBestTime(time) using JSON file
+- [x] Handle first-run case: no save file → return 0 without error
+- [x] Integrate score start into scenes/game.lua on scene show
+- [x] Integrate score stop and best-time comparison into game-over trigger in scenes/game.lua
+- [x] Call save.saveBestTime() only when new time > current best
+- [x] Pass current time and best time to gameover scene
+- [x] Load best time in menu scene for later display use
+- [x] Test: 10s survival → score shows ~10.0 in simulator
+- [x] Test: die, restart, verify best score loads correctly in simulator
+- [x] Test: die with lower score, verify best NOT overwritten
+- [x] Test: first run (no save file) starts cleanly
+- [x] Test: HTML5 browser → best score persists after page refresh
+- [x] Document HTML5 persistence behavior in DEV_NOTES.md
 
 ## Phase 9 — Full game flow integration (title, gameplay, game-over, restart)
-- [ ] Complete scenes/menu.lua: show best time from save, add start navigation
-- [ ] Complete scenes/gameover.lua: show current and best time, add restart navigation
-- [ ] Add HUD score label to scenes/game.lua, update each frame
-- [ ] Wire all systems (player, cave, trail, score) into game scene init
-- [ ] Wire full system cleanup into scene:destroy() in game scene
-- [ ] Reset cave generator with fixed seed (DEFAULT_SEED) on every game start
-- [ ] Clear look-ahead buffer and refill on restart
-- [ ] Test: two full launch → play → die → restart cycles in simulator
-- [ ] Test: each restart starts with same cave layout (fixed seed verification)
-- [ ] Test: best time reflects actual best after two runs on menu and gameover screens
-- [ ] Test: 5 rapid restarts — no Lua errors, no FPS degradation
-- [ ] Test: HUD score readable, does not overlap cave in landscape
-- [ ] Test: full two-cycle run in HTML5 browser
-- [ ] Manual 30s play test: game feels coherent and complete
+- [x] Complete scenes/menu.lua: show best time from save, add start navigation
+- [x] Complete scenes/gameover.lua: show current and best time, add restart navigation
+- [x] Add HUD score label to scenes/game.lua, update each frame
+- [x] Wire all systems (player, cave, trail, score) into game scene init
+- [x] Wire full system cleanup into scene:destroy() in game scene
+- [x] Reset cave generator with fixed seed (DEFAULT_SEED) on every game start
+- [x] Clear look-ahead buffer and refill on restart
+- [x] Test: two full launch → play → die → restart cycles in simulator
+- [x] Test: each restart starts with same cave layout (fixed seed verification)
+- [x] Test: best time reflects actual best after two runs on menu and gameover screens
+- [x] Test: 5 rapid restarts — no Lua errors, no FPS degradation
+- [x] Test: HUD score readable, does not overlap cave in landscape
+- [x] Test: full two-cycle run in HTML5 browser
+- [x] Manual 30s play test: game feels coherent and complete
 
 ## Phase 10 — Audio integration with HTML5 compatibility
 - [ ] Source or create assets/audio/start.ogg (< 100KB)

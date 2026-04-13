@@ -58,6 +58,33 @@
 - [x] Verify game transitions to `gameover` on collision with top or bottom walls
 - [x] Verify smooth scrolling and chunk generation without visual gaps
 
+## Phase 7 — Trail rendering (chain of small blocks)
+- [x] Create `systems/trail.lua` with pre-allocated display object pool
+- [x] Implement circular-like recycling for trail blocks
+- [x] Implement trail scrolling (blocks move left at `SCROLL_SPEED`)
+- [x] Integrate trail system into `scenes/game.lua`
+- [x] Verify trail appears behind player and scrolls correctly
+- [x] Verify trail pool remains bounded (no memory leak from new objects)
+- [x] Verify trail stops updating on player death
+
+## Phase 8 — Score tracking and local persistence
+- [x] Create `systems/score.lua` with time tracking and formatting (already existed, verified)
+- [x] Create `systems/save.lua` with JSON-based best score persistence
+- [x] Integrate score tracking and HUD into `scenes/game.lua`
+- [x] Implement best score loading and display in `scenes/menu.lua`
+- [x] Implement current and best score display in `scenes/gameover.lua`
+- [x] Verify score increments during play and stops on collision
+- [x] Verify best score is saved and persists across app restarts
+
+## Phase 9 — Full game flow integration (title, gameplay, game-over, restart)
+- [x] Complete `scenes/menu.lua` with title, best score, and "Tap to Start" prompt
+- [x] Complete `scenes/gameover.lua` with current and best score display
+- [x] Integrate HUD score label in `scenes/game.lua`
+- [x] Wire all systems (player, cave, trail, score) into the game loop
+- [x] Ensure clean state on restart (generator reset with fixed seed, trail/score reset)
+- [x] Verify seamless navigation from menu -> game -> gameover -> menu
+- [x] Confirm cave layout is deterministic (same layout on every restart)
+
 Verified on: Monday, April 13, 2026
 OS: win32
-Result: Success. Cave scrolls smoothly, and collision detection is accurate.
+Result: Success. Trail provides satisfying visual feedback of the player's path.

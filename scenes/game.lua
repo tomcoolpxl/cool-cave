@@ -3,13 +3,21 @@ local scene = composer.newScene()
 local playerSystem = require("systems.player")
 local caveGenerator = require("systems.cave_generator")
 local collisionSystem = require("systems.collision")
+local trailSystem = require("systems.trail")
+local scoreSystem = require("systems.score")
+local saveSystem = require("systems.save")
 local constants = require("constants")
 
 local player
 local generator
+local trail
+local score
+local scoreLabel
 local activeSlices = {}
 local slicePool = {} -- Pool of {topView, bottomView}
 local caveGroup
+local trailGroup
+local uiGroup
 
 local function getFromPool()
     if #slicePool > 0 then
@@ -50,6 +58,17 @@ end
 local function onFrame(event)
     if player and not player.isDead then
         player:update()
+        
+        -- Update trail
+        if trail then
+            trail:update(player.y)
+            trail:render()
+        end
+
+        -- Update score label
+        if score and scoreLabel then
+            scoreLabel.text = "Score: " .. scoreSystem.format(score:getElapsed())
+        end
 
         -- Scroll slices
         local scrollStep = constants.SCROLL_SPEED * constants.FIXED_DT
@@ -82,7 +101,19 @@ local function onFrame(event)
         -- Collision detection
         if collisionSystem.check(player.y, activeSlices) then
             player.isDead = true
-            composer.gotoScene("scenes.gameover", { effect = "fade", time = 400 })
+            if score then
+                score:stop()
+                local finalScore = score:getElapsed()
+                saveSystem.saveBestTime(finalScore)
+                local bestTime = saveSystem.loadBestTime()
+                composer.gotoScene("scenes.gameover", { 
+                    effect = "fade", 
+                    time = 400,
+                    params = { score = finalScore, bestScore = bestTime }
+                })
+            else
+                composer.gotoScene("scenes.gameover", { effect = "fade", time = 400 })
+            end
         end
     end
 end
@@ -106,16 +137,51 @@ function scene:create(event)
     -- Cave rendering group
     caveGroup = display.newGroup()
     group:insert(caveGroup)
+    
+    -- Trail rendering group
+    trailGroup = display.newGroup()
+    group:insert(trailGroup)
+
+    -- UI group
+    uiGroup = display.newGroup()
+    group:insert(uiGroup)
+
+    -- Score label
+    scoreLabel = display.newText({
+        parent = uiGroup,
+        text = "Score: 0.0",
+        x = 20,
+        y = 20,
+        font = native.systemFontBold,
+        fontSize = 24
+    })
+    scoreLabel.anchorX = 0
+    scoreLabel:setFillColor(1, 1, 1)
 
     -- Initialize generator
     generator = caveGenerator.new(constants.DEFAULT_SEED)
 
     -- Initialize the player
     player = playerSystem.new(group)
+    
+    -- Initialize trail
+    trail = trailSystem.new(trailGroup)
+
+    -- Initialize score
+    score = scoreSystem.new()
 end
 
 function scene:show(event)
     if event.phase == "did" then
+        -- Reset generator with the fixed seed for every new run
+        generator = caveGenerator.new(constants.DEFAULT_SEED)
+        
+        -- Clear existing slices
+        for _, slice in ipairs(activeSlices) do
+            returnToPool(slice.views)
+        end
+        activeSlices = {}
+
         -- Generate initial cave to fill screen
         local initialChunk = generator:generateChunk(math.ceil(constants.SCREEN_W / constants.SLICE_WIDTH) + 2)
         for _, slice in ipairs(initialChunk) do
@@ -124,6 +190,11 @@ function scene:show(event)
         end
         updateSliceViews()
         
+        -- Start score
+        if score then
+            score:start()
+        end
+
         Runtime:addEventListener("enterFrame", onFrame)
     end
 end
@@ -134,6 +205,10 @@ function scene:hide(event)
         if player then
             player:destroy()
             player = nil
+        end
+        if trail then
+            trail:destroy()
+            trail = nil
         end
         -- Clear cave slices
         for _, slice in ipairs(activeSlices) do

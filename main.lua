@@ -4,4 +4,8 @@
 
 local composer = require("composer")
 
+-- Run logic tests on startup (can be disabled for production)
+local logicTest = require("test.logic_test")
+logicTest.run()
+
 composer.gotoScene("scenes.menu")

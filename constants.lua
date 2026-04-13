@@ -13,8 +13,8 @@ M.MAX_VY_DOWN = 10     -- Maximum downward velocity
 M.FIXED_DT = 1/60      -- Fixed timestep for physics
 
 -- Player Visuals
-M.AVATAR_W = 40
-M.AVATAR_H = 20
+M.AVATAR_W = 30
+M.AVATAR_H = 12
 M.PLAYER_X = 150       -- Fixed horizontal position of the player
 M.AVATAR_COLOR = { 1, 1, 1 } -- White avatar
 
@@ -22,7 +22,7 @@ M.AVATAR_COLOR = { 1, 1, 1 } -- White avatar
 M.DEFAULT_SEED = 20250101
 M.SCROLL_SPEED = 200   -- Pixels per second
 M.CHUNK_SIZE = 20      -- Number of slices per chunk
-M.MIN_GAP = 180        -- Minimum vertical gap in the cave
+M.MIN_GAP = 280        -- Minimum vertical gap in the cave
 M.MAX_STEP = 15        -- Maximum change in wall Y per slice
 M.CENTER_DRIFT_MAX = 100 -- Max drift from center of screen
 M.SLICE_WIDTH = 20     -- Width of each cave slice
