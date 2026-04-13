@@ -14,8 +14,17 @@
 - [x] Write `DEV_NOTES.md` documenting Solar2D version, build steps, and local server command
 - [x] Scope creep check: grep new files for player/cave/score/trail (comments only — PASS)
 
+## Phase 2 — Composer Scene Skeleton and Game Loop Stub
+- [x] Create `scenes/menu.lua` with tap-to-start navigation
+- [x] Create `scenes/game.lua` with `enterFrame` loop and `onCollisionSim` tap
+- [x] Create `scenes/gameover.lua` with tap-to-restart navigation
+- [x] Verify state transitions: Menu -> Game -> Gameover -> Menu
+- [x] Verify `enterFrame` starts and stops correctly (no console logs after scene exit)
+- [x] Verify objects are correctly inserted into `self.view` for Composer management
+- [x] Verify HTML5 build navigation without console errors
+
 Verified on: Monday, April 13, 2026
 OS: win32
 Solar2D Simulator: C:\Program Files (x86)\Corona Labs\Corona\Corona Simulator.exe
 Target: HTML5
-Result: Success. Title "CoolCave" rendered centrally. Resolution 960x540 confirmed.
+Result: Success. Full navigation cycle confirmed. `enterFrame` logging verified to stop on hide.
