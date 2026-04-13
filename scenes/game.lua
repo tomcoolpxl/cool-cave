@@ -1,12 +1,27 @@
 local composer = require("composer")
 local scene = composer.newScene()
+local playerSystem = require("systems.player")
+local constants = require("constants")
+
+local player -- Declare the player instance
 
 local function onFrame(event)
-    -- This represents the 60 FPS heart of the game.
-    print("Game Loop Active: " .. event.frame)
+    -- Update the player each frame
+    if player then
+        player:update()
+    end
 end
 
-local function onCollisionSim(event)
+local function onTouch(event)
+    -- Pass touch events to the player system
+    if player then
+        return player:handleInput(event)
+    end
+    return false
+end
+
+-- Temporary function to simulate death for testing until Phase 6
+local function onSimulateDeath(event)
     composer.gotoScene("scenes.gameover", { effect = "fade", time = 400 })
     return true
 end
@@ -14,15 +29,25 @@ end
 function scene:create(event)
     local group = self.view
     
-    -- Placeholder avatar
-    local avatar = display.newRect(group, 100, display.contentCenterY, 40, 40)
-    avatar:setFillColor(0, 1, 0)
-    
-    -- Background rect to capture taps and simulate "death/collision"
+    -- Background to capture touch events
     local bg = display.newRect(group, display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight)
-    bg.isVisible = false
+    bg:setFillColor(unpack(constants.BG_COLOR))
     bg.isHitTestable = true
-    bg:addEventListener("tap", onCollisionSim)
+    bg:addEventListener("touch", onTouch)
+    
+    -- Instructions for simulate death (Phase 2 legacy)
+    local label = display.newText({
+        parent = group,
+        text = "Tap once to simulate death (Phase 2 stub)",
+        x = display.contentCenterX,
+        y = 30,
+        font = native.systemFont,
+        fontSize = 14
+    })
+    label:addEventListener("tap", onSimulateDeath)
+
+    -- Initialize the player
+    player = playerSystem.new(group)
 end
 
 function scene:show(event)
@@ -34,6 +59,10 @@ end
 function scene:hide(event)
     if event.phase == "will" then
         Runtime:removeEventListener("enterFrame", onFrame)
+        if player then
+            player:destroy()
+            player = nil
+        end
     end
 end
 

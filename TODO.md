@@ -21,17 +21,17 @@
 - [x] Confirm enterFrame listener is cleaned up on scene exit (add debug print)
 
 ## Phase 3 — Player movement system with input handling
-- [ ] Create util/math_utils.lua with clamp() and lerp() functions
-- [ ] Create constants.lua with RISE_ACC, FALL_ACC, MAX_VY_UP, MAX_VY_DOWN, AVATAR_W, AVATAR_H, PLAYER_X
-- [ ] Create systems/player.lua with y/vy state, fixed-timestep update, rise/fall acceleration
-- [ ] Add velocity clamping to player update
-- [ ] Implement touch/mouse input handler setting isHeld flag in player.lua
-- [ ] Integrate player into scenes/game.lua enterFrame loop
-- [ ] Test: avatar rises on hold, falls on release, in simulator
-- [ ] Test: avatar behavior matches in HTML5 browser build
-- [ ] Test: velocity clamp works (hold 3 seconds, check max speed not exceeded)
-- [ ] Manual feel test: confirm floaty, non-twitchy movement
-- [ ] Confirm fixed timestep is used (document in player.lua comment)
+- [x] Create util/math_utils.lua with clamp() and lerp() functions
+- [x] Create constants.lua with RISE_ACC, FALL_ACC, MAX_VY_UP, MAX_VY_DOWN, AVATAR_W, AVATAR_H, PLAYER_X
+- [x] Create systems/player.lua with y/vy state, fixed-timestep update, rise/fall acceleration
+- [x] Add velocity clamping to player update
+- [x] Implement touch/mouse input handler setting isHeld flag in player.lua
+- [x] Integrate player into scenes/game.lua enterFrame loop
+- [x] Test: avatar rises on hold, falls on release, in simulator
+- [x] Test: avatar behavior matches in HTML5 browser build
+- [x] Test: velocity clamp works (hold 3 seconds, check max speed not exceeded)
+- [x] Manual feel test: confirm floaty, non-twitchy movement
+- [x] Confirm fixed timestep is used (document in player.lua comment)
 
 ## Phase 4 — Seeded cave generator producing slice data
 - [ ] Create util/random.lua with Xorshift32 RNG (new, nextInt methods)

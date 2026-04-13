@@ -23,8 +23,15 @@
 - [x] Verify objects are correctly inserted into `self.view` for Composer management
 - [x] Verify HTML5 build navigation without console errors
 
+## Phase 3 — Player movement system with input handling
+- [x] Create `util/math_utils.lua` with `clamp()` and `lerp()` functions
+- [x] Create `constants.lua` with movement constants (`RISE_ACC`, `FALL_ACC`, etc.)
+- [x] Create `systems/player.lua` with fixed-timestep update and input handler
+- [x] Integrate player system into `scenes/game.lua`
+- [x] Verify avatar responds to hold/release input (rises on hold, falls on release)
+- [x] Verify velocity clamping works as intended
+- [x] Verify fixed timestep is used in player update
+
 Verified on: Monday, April 13, 2026
 OS: win32
-Solar2D Simulator: C:\Program Files (x86)\Corona Labs\Corona\Corona Simulator.exe
-Target: HTML5
-Result: Success. Full navigation cycle confirmed. `enterFrame` logging verified to stop on hide.
+Result: Success. Player movement is floaty and responds correctly to touch events.
